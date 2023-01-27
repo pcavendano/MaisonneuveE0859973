@@ -20,7 +20,9 @@ class EtudiantFactory extends Factory
             'phone' => $this->faker->unique()->phoneNumber(),
             'email' =>  $this->faker->unique()->safeEmail(),
             'date_de_naissance' =>  $this->faker->dateTimeThisCentury(),
-            'villeId' => Ville::factory()
+            'villeId' => Ville::factory(),
+            'updated_at' => $this->faker->time(), //Generates a fake sentence
+            'created_at' => $this->faker->time()
         ];
     }
 }

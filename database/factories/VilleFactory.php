@@ -16,7 +16,9 @@ class VilleFactory extends Factory
     {
         return [
             'id' => rand(1,1000), //Generates a Ville from factory and extracts id...
-            'nom' => $this->faker->city() //Generates a fake sentence
+            'nom' => $this->faker->city(), //Generates a fake sentence
+            'updated_at' => $this->faker->time(), //Generates a fake sentence
+            'created_at' => $this->faker->time()
         ];
     }
 }

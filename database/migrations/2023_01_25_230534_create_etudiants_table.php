@@ -18,10 +18,11 @@ class CreateEtudiantsTable extends Migration
             $table->increments('id');
             $table->string('nom', 100);
             $table->longText('adresse');
-            $table->string('phone', 10);
+            $table->string('phone', 20);
             $table->string('email')->unique();
             $table->date('date_de_naissance');
             $table->integer('villeId')->foreign('villeId')->references ('id')->on('villes');
+            $table->timestamps();
         });
     }
 
