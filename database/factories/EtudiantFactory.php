@@ -13,11 +13,13 @@ class EtudiantFactory extends Factory
      */
     public function definition()
     {
+        $this->faker->addProvider(new \Mmo\Faker\LoremFacesProvider($this->faker));
         return [
-            'id' => rand(1,1000),
+            'id' => $this->faker->unique()->randomNumber(6, true),
             'nom' => $this->faker->name(),
             'adresse' => $this->faker->unique()->address(),
             'phone' => $this->faker->unique()->phoneNumber(),
+            'image'=> $this->faker->unique()->loremFacesUrl(),
             'email' =>  $this->faker->unique()->safeEmail(),
             'date_de_naissance' =>  $this->faker->dateTimeThisCentury(),
             'villeId' => Ville::factory(),

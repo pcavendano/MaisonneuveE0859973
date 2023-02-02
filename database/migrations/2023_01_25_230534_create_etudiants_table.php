@@ -20,6 +20,7 @@ class CreateEtudiantsTable extends Migration
             $table->longText('adresse');
             $table->string('phone', 20);
             $table->string('email')->unique();
+            $table->string('image');
             $table->date('date_de_naissance');
             $table->integer('villeId')->foreign('villeId')->references ('id')->on('villes');
             $table->timestamps();

@@ -14,7 +14,10 @@ class VilleController extends Controller
      */
     public function index()
     {
-        //
+        $villes = Ville::all(); //récupérer toutes les villes de la DB
+        return $villes;
+
+
     }
 
     /**
@@ -30,7 +33,7 @@ class VilleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +44,7 @@ class VilleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ville  $ville
+     * @param \App\Models\Ville $ville
      * @return \Illuminate\Http\Response
      */
     public function show(Ville $ville)
@@ -52,7 +55,7 @@ class VilleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ville  $ville
+     * @param \App\Models\Ville $ville
      * @return \Illuminate\Http\Response
      */
     public function edit(Ville $ville)
@@ -63,8 +66,8 @@ class VilleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ville  $ville
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Ville $ville
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Ville $ville)
@@ -75,7 +78,7 @@ class VilleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ville  $ville
+     * @param \App\Models\Ville $ville
      * @return \Illuminate\Http\Response
      */
     public function destroy(Ville $ville)
