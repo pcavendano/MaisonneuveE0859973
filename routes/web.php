@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\EtudiantController;
+use \App\Http\Controllers\VilleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,27 +34,24 @@ return view('listing', [
 */
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/etudiants', [EtudiantController::class
+Route::get('/', [EtudiantController::class
     , 'index']);
 
-Route::get('/etudiants/{etudiant}', [EtudiantController::class
+Route::view('/etudiants/creer/etudiant', 'etudiants.create', ['villes' => VilleController::index()]);
+
+Route::get('/etudiant/{etudiant}', [EtudiantController::class
     , 'show']);
 
+Route::post('/etudiants/creer/etudiant', [EtudiantController::class
+    , 'create']);
 
-Route::get('/home', function () {
-    return view('welcome');
-});
+Route::delete('/etudiant/{id}', [EtudiantController::class
+    , 'delete']);
 
-
-//Route::get($uri, $callback);
-//Route::post($uri, $callback);
-//Route::put($uri, $callback);
-//Route::patch($uri, $callback);
-//Route::delete($uri, $callback);
+Route::put('/etudiants/{etudiant}/edit', [EtudiantController::class
+    , 'edit']);
+Route::patch('/etudiants/{etudiant}/edit', [EtudiantController::class
+    , 'update']);
 //Route::options($uri, $callback);
 //
 //Route::match(['get', 'post'], '/', function () {
