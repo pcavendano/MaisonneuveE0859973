@@ -1,3 +1,9 @@
+/**
+ * Nous allons utiliser bootstrap installé avec npm.
+ * const bootstrap est un object contenant tous les plugins de bootstrap
+ */
+const bootstrap = require('bootstrap')
+
 window._ = require('lodash');
 
 /**
