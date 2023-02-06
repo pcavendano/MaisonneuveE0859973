@@ -11,6 +11,8 @@
             <div class="row">
                 <!-- Left side -->
                 <div class="col-lg-8">
+                    <!-- Verifiaction et affichage des messages d'erreur -->
+
                     <!-- Basic information -->
                     <form enctype="multipart/form-data" name="ajouter-etudiant-post-form" id="ajouter-etudiant-post-form" method="post"
                           action="{{url('/etudiants/creer/etudiant')}}">
@@ -23,14 +25,14 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label nom="nom" class="form-label">Prénom</label>
-                                            <input id="nom" name="nom"  type="text" class="form-control">
+                                            <input id="nom" name="nom"  type="text" class="form-control" value="{{ old('nom') }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="date_de_naissance">Date de Naissance</label>
                                             <input type="date" id="date_de_naissance" name="date_de_naissance" class="form-control"
-                                                   required=""/>
+                                                   required="" value="{{ old('date_de_naissance') }}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -38,13 +40,16 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label nom="email" class="form-label">Courriel éléctronique</label>
-                                            <input id="email" name="email" type="email" class="form-control">
+                                            <input id="email" name="email" type="email" class="form-control" value="{{ old('email') }}">
+                                            @if ($errors->has('email'))
+                                                <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label nom="phone" class="form-label">Numéro de téléphone</label>
-                                            <input id="phone" name="phone" type="text" class="form-control">
+                                            <input id="phone" name="phone" type="text" class="form-control" value="{{ old('phone') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +61,7 @@
                                 <h3 class="h6 mb-4">Inscrivez votre adresse</h3>
                                 <div class="mb-3">
                                     <label name="adresse" class="form-label">Adresse</label>
-                                    <input id="adresse" name="adresse" type="text" class="form-control">
+                                    <input id="adresse" name="adresse" type="text" class="form-control" value="{{ old('adresse') }}">
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -86,6 +91,9 @@
                             <h3 class="h6">Choisissez votre image de profil</h3>
                             <label name="image" >Upload Image</label>
                             <input class="form-control" type="file"  accept="image/*" name="image" id="file">
+                            @if ($errors->has('image'))
+                                <span class="text-danger text-left">{{ $errors->first('image') }}</span>
+                            @endif
                         </div>
                     </div>
                     <div class="card mb-4 avatar">

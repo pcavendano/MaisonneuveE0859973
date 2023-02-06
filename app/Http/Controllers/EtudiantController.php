@@ -28,6 +28,17 @@ class EtudiantController extends Controller
      */
     public function create(Request $request)
     {
+        $email = $request->old('email');
+        $phone = $request->old('phone');
+        $phone = $request->old('date_de_naissance');
+        $nom = $request->old('nom');
+        $adresse = $request->old('adresse');
+        $villeId = $request->old('villeId');
+        $validated = $request->validate([
+            'email' => 'required|unique:etudiants|max:255'
+        ]);
+
+
         $imageId = null;
         if (null === $imageId) {
             $imageId = random_int(self::MIN_IMAGE_ID, self::MAX_IMAGE_ID);
@@ -54,7 +65,8 @@ class EtudiantController extends Controller
         $etudiant->date_de_naissance = $request->date_de_naissance;
         $etudiant->villeId = $request->villeId;
         $etudiant->save();
-        return redirect('/')->with('status', 'Blog Post Form Data Has Been inserted');
+        return back('/')->with('status', 'Blog Post Form Data Has Been inserted')
+            ->with('email', 'Létudiant avec le courriel'.$etudiant->email.'existe déjà.');
     }
 
     /**
@@ -120,6 +132,6 @@ class EtudiantController extends Controller
         $etudiant->date_de_naissance = $request->date_de_naissance;
         $etudiant->villeId = $request->villeId;
         $etudiant->save();
-        return redirect('/')->with('status', 'Blog Post Form Data Has Been inserted');
+        return redirect('/')->with('success', 'Blog Post Form Data Has Been deleted');
     }
 }
