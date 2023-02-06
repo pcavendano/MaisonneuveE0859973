@@ -71,7 +71,15 @@
                                     <th scope="row" class="ps-4">
                                         <div class="form-check font-size-16"><input type="checkbox" class="form-check-input" id="contacusercheck1" /><label class="form-check-label" for="contacusercheck1"></label></div>
                                     </th>
-                                    <td><img src="{{ $etudiant->image}}" alt="" class="avatar-sm rounded-circle me-2" /><a href="./etudiant/{{ $etudiant->id }}" class="text-body">{{ ucfirst($etudiant->nom)}}</a></td>
+                                    <td>
+
+                                        @if(str_contains($etudiant->image, 'http') !== false)
+                                            <img src="{{ $etudiant->image}}" alt="" class="avatar-sm rounded-circle me-2" />
+                                        @else
+                                            <img src="{{ asset('images/'.$etudiant->image)}}" alt="" class="avatar-sm rounded-circle me-2" />
+                                        @endif
+                                        <a href="./etudiant/{{ $etudiant->id }}" class="text-body">{{ ucfirst($etudiant->nom)}}</a>
+                                    </td>
                                     <td><span class="badge badge-soft-success mb-0">{{ $etudiant->email }}</span></td>
                                     <td class="col-lg-4">{{ $etudiant->adresse}}</td>
                                     <td>{{ $etudiant->phone }}</td>

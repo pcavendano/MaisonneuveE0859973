@@ -12,7 +12,7 @@
                 <!-- Left side -->
                 <div class="col-lg-8">
                     <!-- Basic information -->
-                    <form name="ajouter-etudiant-post-form" id="ajouter-etudiant-post-form" method="post"
+                    <form enctype="multipart/form-data" name="ajouter-etudiant-post-form" id="ajouter-etudiant-post-form" method="post"
                           action="{{url('/etudiants/creer/etudiant')}}">
                         @csrf
                         @method('POST')

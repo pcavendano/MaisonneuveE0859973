@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class EtudiantController extends Controller
 {
+    const MAX_IMAGE_ID = 6796;
+    const MIN_IMAGE_ID = 1;
     /**
      * Display a listing of the resource.
      *
@@ -26,10 +28,28 @@ class EtudiantController extends Controller
      */
     public function create(Request $request)
     {
+        $imageId = null;
+        if (null === $imageId) {
+            $imageId = random_int(self::MIN_IMAGE_ID, self::MAX_IMAGE_ID);
+        }
+
+        $imageId = sprintf('https://faces-img.xcdn.link/image-lorem-face-%d.jpg', $imageId);
+
+        $filename = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $filename);
+
+        // save uploaded image filename here to your database
+
         $etudiant = new Etudiant;
         $etudiant->nom = $request->nom;
         $etudiant->adresse = $request->adresse;
         $etudiant->phone = $request->phone;
+        if($filename != null){
+            $etudiant->image = $filename;
+        }else{
+            $etudiant->image = $imageId;
+        }
+
         $etudiant->email = $request->email;
         $etudiant->date_de_naissance = $request->date_de_naissance;
         $etudiant->villeId = $request->villeId;
