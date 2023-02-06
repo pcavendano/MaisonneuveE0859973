@@ -10825,25 +10825,24 @@ textarea.form-control-lg {
 }
 body {
   margin-top: 20px;
+  background-color: #e4e7ea;
+}
+
+.header {
+  background-color: white;
+}
+
+.table {
   background-color: #eee;
 }
 
-body {
-  margin-top: 20px;
-  background-color: #eee;
-}
-
-.project-list-table {
+.project-list-table:not(:first-child) {
   border-collapse: separate;
   border-spacing: 0 12px;
 }
 
 .project-list-table tr {
-  background-color: #fff;
-}
-
-.table-nowrap td, .table-nowrap th {
-  white-space: nowrap;
+  background-color: white;
 }
 
 .table-borderless > :not(caption) > * > * {

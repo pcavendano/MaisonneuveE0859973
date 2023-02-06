@@ -3,10 +3,10 @@
 
 
     <div class="container">
-        <div class="row align-items-center">
+        <div class=" header mb-2 row align-items-center">
             <div class="col-md-6">
                 <div class="mb-3">
-                    <h1 class="display-one mt-5">{{ config('app.name') }}</h1>
+                    <h1 class="display-one mt-2">{{ config('app.name') }}</h1>
                     <h5 class="card-title">Liste d'étudiants du Collège de Maisonneuve<span class="text-muted fw-normal ms-2">({{count($etudiants)}})</span></h5>
                 </div>
             </div>
@@ -34,10 +34,10 @@
                         </ul>
                     </div>
                     <div>
-                        <a href="/etudiants/creer/etudiant" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i>Ajouter étudiant</a>
+                        <a href="./etudiants/creer/etudiant"  data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i>Ajouter étudiant</a>
                     </div>
                     <div class="dropdown">
-                        <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-horizontal-rounded"></i></a>
+                        <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i></i></a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -49,19 +49,19 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="">
-                    <div class="table">
-                        <table class="table project-list-table table-nowrap align-middle table-borderless">
-                            <thead>
+                <div>
+                    <div class="">
+                        <table class="table pt-0 mt-0 border border-1 border-top-0 table-hover project-list-table table-nowrap align-middle table-borderless">
+                            <thead class="table-primary">
                             <tr>
                                 <th scope="col" class="ps-4" style="width: 50px;">
                                     <div class="form-check font-size-16"><input type="checkbox" class="form-check-input" id="contacusercheck" /><label class="form-check-label" for="contacusercheck"></label></div>
                                 </th>
                                 <th scope="col">Nom</th>
                                 <th scope="col">Courriel éléctronique</th>
-                                <th scope="col">Adresse</th>
+                                <th  class="col-lg-4" scope="col">Adresse</th>
                                 <th scope="col">Téléphone</th>
-                                <th scope="col" style="width: 200px;">Action</th>
+                                <th class="col-lg-1" scope="col" style="width: 200px;">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -73,9 +73,9 @@
                                     </th>
                                     <td><img src="{{ $etudiant->image}}" alt="" class="avatar-sm rounded-circle me-2" /><a href="./etudiant/{{ $etudiant->id }}" class="text-body">{{ ucfirst($etudiant->nom)}}</a></td>
                                     <td><span class="badge badge-soft-success mb-0">{{ $etudiant->email }}</span></td>
-                                    <td>{{ $etudiant->adresse}}</td>
+                                    <td class="col-lg-4">{{ $etudiant->adresse}}</td>
                                     <td>{{ $etudiant->phone }}</td>
-                                    <td>
+                                    <td class="col-lg-1">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
                                                 <a href="./etudiant/{{ $etudiant->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>

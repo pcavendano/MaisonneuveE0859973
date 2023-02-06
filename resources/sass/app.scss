@@ -9,26 +9,28 @@ $table-bg: white;
 //import bootstrap
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
+body{
+    margin-top:20px;
+    background-color: #e4e7ea;
+}
 
-body{margin-top:20px;
+.header{
+    background-color:white;
+
+}
+.table{
     background-color:#eee;
 }
 
-body{margin-top:20px;
-    background-color:#eee;
-}
-.project-list-table {
+.project-list-table:not(:first-child){
     border-collapse: separate;
     border-spacing: 0 12px
 }
 
 .project-list-table tr {
-    background-color: #fff
+    background-color: white;
 }
 
-.table-nowrap td, .table-nowrap th {
-    white-space: nowrap;
-}
 .table-borderless>:not(caption)>*>* {
     border-bottom-width: 0;
 }
