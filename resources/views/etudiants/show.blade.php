@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12 pt-2"><a href="/etudiant" class="btn btn-outline-primary btn-sm">Retourner</a>
+            <div class="col-10 pt-2"><a href="/" class="btn btn-outline-primary btn-sm">Retourner</a>
                 <h1 class="display-one">{{ ucfirst($etudiant->nom) }}</h1>
                 <p>{!! $etudiant->adresse !!}</p>
                 <hr>
