@@ -37,6 +37,12 @@ return view('listing', [
 Route::get('/', [EtudiantController::class
     , 'index']);
 
+Route::group(['namespace' => 'App\Http\Controllers'], function()
+{
+    Route::get('/ajouter-etudiant', 'EtudiantController@create')->name('ajouter-etudiant.index');
+    Route::post('/ajouter-etudiant', 'EtudiantController@store')->name('ajouter-etudiant.post');
+});
+
 Route::view('/etudiants/creer/etudiant', 'etudiants.create', ['villes' => VilleController::index()]);
 
 Route::get('/etudiant/{etudiant}', [EtudiantController::class
