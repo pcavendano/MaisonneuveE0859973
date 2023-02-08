@@ -17,11 +17,31 @@
                 <div class="col-lg-8">
                     <!-- Verifiaction et affichage des messages d'erreur -->
 
+                    @if(Session::get('success', false))
+                        <?php $data = Session::get('success'); ?>
+                        @if (is_array($data))
+                            @foreach ($data as $msg)
+                                <div class="alert alert-success" role="alert">
+                                    <i class="fa fa-check"></i>
+                                    {{ $msg }}
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="alert alert-success" role="alert">
+                                <i class="fa fa-check"></i>
+                                {{ $data }}
+                            </div>
+                        @endif
+                        <div class="m-2">
+                            <img class="avatar-img rounded-circle" src="images/{{ Session::get('image') }}"  width="200px">
+                        </div>
+                @endif
+
+
                     <!-- Basic information -->
                     <form enctype="multipart/form-data" name="ajouter-etudiant-post-form" id="ajouter-etudiant-post-form" method="post"
-                          action="{{url('/etudiants/creer/etudiant')}}">
+                          action="{{route('ajouter-etudiant.post')}}">
                         @csrf
-                        @method('POST')
                         <div class="card mb-4">
                             <div class="card-body">
                                 <h3 class="h6 mb-4">Basic information</h3>
