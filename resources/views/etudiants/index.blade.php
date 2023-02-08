@@ -34,7 +34,7 @@
                         </ul>
                     </div>
                     <div>
-                        <a href="./etudiants/creer/etudiant"  data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i>Ajouter étudiant</a>
+                        <a href="{{route('ajouter-etudiant.index')}}"  data-bs-target=".add-new" class="btn btn-primary"><i class="bx bx-plus me-1"></i>Ajouter étudiant</a>
                     </div>
                     <div class="dropdown">
                         <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i></i></a>
