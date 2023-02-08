@@ -2,6 +2,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="container">
+            <!-- Navigation -->
+            <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+                <a href="/" class="btn btn-outline-primary btn-sm">Retourner</a>
+            </div>
             <!-- Title -->
             <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
                 <h2 class="h5 mb-3 mb-lg-0"> Ajoutez un nouveau étudiant</h2>
@@ -24,7 +28,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label nom="nom" class="form-label">Prénom</label>
+                                            <label for="nom" class="form-label">Prénom</label>
                                             <input id="nom" name="nom"  type="text" class="form-control" value="{{ old('nom') }}">
                                         </div>
                                     </div>
@@ -39,7 +43,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label nom="email" class="form-label">Courriel éléctronique</label>
+                                            <label for="email" class="form-label">Courriel éléctronique</label>
                                             <input id="email" name="email" type="email" class="form-control" value="{{ old('email') }}">
                                             @if ($errors->has('email'))
                                                 <span class="text-danger text-left">{{ $errors->first('email') }}</span>
@@ -48,7 +52,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label nom="phone" class="form-label">Numéro de téléphone</label>
+                                            <label for="phone" class="form-label">Numéro de téléphone</label>
                                             <input id="phone" name="phone" type="text" class="form-control" value="{{ old('phone') }}">
                                         </div>
                                     </div>
@@ -60,7 +64,7 @@
                             <div class="card-body">
                                 <h3 class="h6 mb-4">Inscrivez votre adresse</h3>
                                 <div class="mb-3">
-                                    <label name="adresse" class="form-label">Adresse</label>
+                                    <label for="adresse" class="form-label">Adresse</label>
                                     <input id="adresse" name="adresse" type="text" class="form-control" value="{{ old('adresse') }}">
                                 </div>
                                 <div class="row">
@@ -89,7 +93,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h3 class="h6">Choisissez votre image de profil</h3>
-                            <label name="image" >Upload Image</label>
+                            <label for="image" >Upload Image</label>
                             <input class="form-control" type="file"  accept="image/*" name="image" id="file">
                             @if ($errors->has('image'))
                                 <span class="text-danger text-left">{{ $errors->first('image') }}</span>
