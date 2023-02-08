@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
+use App\Models\Ville;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,6 +29,22 @@ class EtudiantController extends Controller
      */
     public function create(Request $request)
     {
+        //afficher le formulaire pour ajouter un étudiant
+        $villes = Ville::all(); //récupérer toutes les villes de la DB
+        return view('etudiants.create', [
+            'villes' => $villes,
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //afficher le formulaire pour ajouter un nouveau étudiant
         $email = $request->old('email');
         $phone = $request->old('phone');
         $phone = $request->old('date_de_naissance');
@@ -38,7 +55,7 @@ class EtudiantController extends Controller
             'email' => 'required|unique:etudiants|max:255'
         ]);
 
-
+        // https://dev.to/codeanddeploy/tutorial-for-laravel-8-image-upload-example-5ehk
         $imageId = null;
         if (null === $imageId) {
             $imageId = random_int(self::MIN_IMAGE_ID, self::MAX_IMAGE_ID);
@@ -65,19 +82,8 @@ class EtudiantController extends Controller
         $etudiant->date_de_naissance = $request->date_de_naissance;
         $etudiant->villeId = $request->villeId;
         $etudiant->save();
-        return back('/')->with('status', 'Blog Post Form Data Has Been inserted')
-            ->with('email', 'Létudiant avec le courriel'.$etudiant->email.'existe déjà.');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return back()->with('success', 'L\'usager '.$etudiant->email.' a été ajouté.')
+            ->with('image', $filename);
     }
 
     /**
@@ -88,6 +94,7 @@ class EtudiantController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
+        //afficher un étudiant
         return view('etudiants.show', [
             'etudiant' => $etudiant,
         ]);
@@ -101,7 +108,7 @@ class EtudiantController extends Controller
      */
     public function edit(Etudiant $etudiant)
     {
-        //
+        //afficher le formulaire pour modifier le profil d'un étudiant
     }
 
     /**
@@ -113,7 +120,7 @@ class EtudiantController extends Controller
      */
     public function update(Request $request, Etudiant $etudiant)
     {
-        //
+        //enregistrer l'étudiant modifié
     }
 
     /**
@@ -124,6 +131,7 @@ class EtudiantController extends Controller
      */
     public function destroy(Etudiant $etudiant)
     {
+        //supprimer un étudiant
         $etudiant = new Etudiant;
         $etudiant->nom = $request->nom;
         $etudiant->adresse = $request->adresse;
