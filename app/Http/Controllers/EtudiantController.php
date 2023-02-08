@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class EtudiantController extends Controller
 {
-    const MAX_IMAGE_ID = 6796;
+    const MAX_IMAGE_ID = 16796;
     const MIN_IMAGE_ID = 1;
     /**
      * Display a listing of the resource.
@@ -95,9 +95,10 @@ class EtudiantController extends Controller
     public function show(Etudiant $etudiant)
     {
         //afficher un étudiant
+        $ville = Ville::find($etudiant->villeId);
         return view('etudiants.show', [
             'etudiant' => $etudiant,
-        ]);
+        'ville' => $ville]);
     }
 
     /**
@@ -109,6 +110,10 @@ class EtudiantController extends Controller
     public function edit(Etudiant $etudiant)
     {
         //afficher le formulaire pour modifier le profil d'un étudiant
+        $ville = Ville::find($etudiant->villeId);
+        return view('etudiants.modifier', [
+            'etudiant' => $etudiant,
+            'ville' => $ville]);
     }
 
     /**
