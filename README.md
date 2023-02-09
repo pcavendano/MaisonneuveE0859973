@@ -1,7 +1,7 @@
 
 ## MaisonneuveE0859973
 
-Travail pr/sent/ par Pedro Contreras Avendano.
+Travail présenté par Pedro Contreras Avendano.
 Pour d/marrer ce projet dans votre machine, excutez les commandes suivantes:
 
 - npm install.
