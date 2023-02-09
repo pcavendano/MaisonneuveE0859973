@@ -3,7 +3,7 @@
  * const bootstrap est un object contenant tous les plugins de bootstrap
  */
 const bootstrap = require('bootstrap')
-
+window.Popper = require('@popperjs/core');
 window._ = require('lodash');
 
 /**
