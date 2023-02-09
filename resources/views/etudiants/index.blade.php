@@ -86,17 +86,45 @@
                                     <td class="col-lg-1">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
-                                                <a href="./etudiant/{{ $etudiant->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                                <a href="./etudiant/{{ $etudiant->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary">
+                                                    <i class="bx bx-pencil font-size-18"></i>
+                                                </a>
                                             </li>
                                             <li class="list-inline-item">
-                                                <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
+
+                                                    <form id="delete-frm" class="" method="post" action="{{route('effacer-etudiant.delete',[$etudiant->id])}}">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="id" hidden>Id</label>
+                                                            <input type="text" id="id" name="id" class="form-control" required=""
+                                                                   value="{{ $etudiant->id }}" hidden>
+                                                        </div>
+                                                        <!-- Button trigger modal -->
+                                                            <a href="javascript:void(0);"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger">
+                                                                <i class="bx bx-trash-alt font-size-18"></i>
+                                                            </a>
+
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Supprimer l'étudiant</h1>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Vous êtes sûr de vouloir effacer votre profil?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+                                                                        <button type="submit"  class="btn btn-danger">Oui je sui sûr</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                             </li>
-{{--                                            <li class="list-inline-item dropdown">--}}
-{{--                                                <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-vertical-rounded"></i></a>--}}
-{{--                                                <div class="dropdown-menu dropdown-menu-end">--}}
-{{--                                                    <a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else à</a>--}}
-{{--                                                </div>--}}
-{{--                                            </li>--}}
                                         </ul>
                                     </td>
                                 </tr>
@@ -120,4 +148,4 @@
             </div>
         </div>
     </div>
-    >@endsection
+    @endsection
