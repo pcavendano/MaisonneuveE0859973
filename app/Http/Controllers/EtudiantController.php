@@ -44,7 +44,7 @@ class EtudiantController extends Controller
      */
     public function store(Request $request)
     {
-        //afficher le formulaire pour ajouter un nouveau étudiant
+        // ajouter un nouveau étudiant
         $email = $request->old('email');
         $phone = $request->old('phone');
         $phone = $request->old('date_de_naissance');
@@ -111,9 +111,12 @@ class EtudiantController extends Controller
     {
         //afficher le formulaire pour modifier le profil d'un étudiant
         $ville = Ville::find($etudiant->villeId);
+        $villes = Ville::all(); //récupérer toutes les villes de la DB
         return view('etudiants.modifier', [
             'etudiant' => $etudiant,
-            'ville' => $ville]);
+            'villec' => $ville,
+            'villes' => $villes]);
+
     }
 
     /**
@@ -126,6 +129,19 @@ class EtudiantController extends Controller
     public function update(Request $request, Etudiant $etudiant)
     {
         //enregistrer l'étudiant modifié
+
+        $etudiant->update([
+            'nom' => $request->nom,
+            'body' => $request->adresse,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'date_de_naissance' => $request->date_de_naissance,
+            'villeId' => $request->villeId
+        ]);
+        $etudiant->save();
+        return  redirect('etudiant/' . $etudiant->id);
+
+        return redirect('/')->with('success', 'Blog Post Form Data Has Been deleted');
     }
 
     /**

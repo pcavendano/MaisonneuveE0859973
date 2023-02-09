@@ -54,6 +54,12 @@ Route::post('/etudiants/creer/etudiant', [EtudiantController::class
 Route::delete('/etudiant/{id}', [EtudiantController::class
     , 'delete']);
 
+Route::group(['namespace' => 'App\Http\Controllers'], function()
+{
+    Route::get('/modifier-etudiant/{etudiant}', 'EtudiantController@edit')->name('modifier-etudiant.index');
+    Route::put('/modifier-etudiant/{etudiant}', 'EtudiantController@update')->name('modifier-etudiant.put');
+});
+
 Route::put('/etudiants/{etudiant}/edit', [EtudiantController::class
     , 'edit']);
 Route::patch('/etudiants/{etudiant}/edit', [EtudiantController::class

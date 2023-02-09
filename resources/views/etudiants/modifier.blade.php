@@ -1,110 +1,135 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-10 pt-2"><a href="/" class="btn btn-outline-primary btn-sm">Retourner</a>
+    <div class="container-fluid">
+        <div class="container">
+            <!-- Navigation -->
+            <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+                <a href="/" class="btn btn-outline-primary btn-sm">Retourner</a>
+            </div>
+            <!-- Title -->
+            <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+                <h2 class="h5 mb-3 mb-lg-0"> Mettez à jour vos données</h2>
+            </div>
 
+            <!-- Main content -->
+            <div class="row">
+                <!-- Left side -->
+                <div class="col-lg-8">
+                    <!-- Verifiaction et affichage des messages d'erreur -->
 
-                <!-- Fiche de l'étudiant avec bootstrap  -->
-                <!-- https://www.bootdey.com/snippets/view/profile-with-data-and-skills -->
-
-                <!-- Breadcrumb -->
-                <nav aria-label="breadcrumb" class="main-breadcrumb">
-                    <ol class="breadcrumb">
-
-                        <li class="breadcrumb-item"><a href="/">Accueil</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($etudiant->nom) }}</li>
-                    </ol>
-                </nav>
-                <!-- /Breadcrumb -->
-
-                <div class="row gutters-sm">
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-
-                                <div class="d-flex flex-column align-items-center text-center">
-                                    @if(str_contains($etudiant->image, 'http') !== false)
-                                        <img src="{{ $etudiant->image}}" alt="" class="rounded-circle" width="150">
-                                    @else
-                                        <img src="{{ asset('images/'.$etudiant->image)}}" alt="" class="rounded-circle" width="150">
-                                    @endif
-                                    <div class="mt-3">
-                                        <h4>{{ $etudiant->nom }}</h4>
-                                        <p class="text-secondary mb-1">Full Stack Developer</p>
-                                        <p class="text-muted font-size-sm">{{ $ville->nom }}</p>
-                                        <button class="btn btn-primary">Follow</button>
-                                        <button class="btn btn-outline-primary">Message</button>
-                                    </div>
+                    @if(Session::get('success', false))
+                        <?php $data = Session::get('success'); ?>
+                        @if (is_array($data))
+                            @foreach ($data as $msg)
+                                <div class="alert alert-success" role="alert">
+                                    <i class="fa fa-check"></i>
+                                    {{ $msg }}
                                 </div>
+                            @endforeach
+                        @else
+                            <div class="alert alert-success" role="alert">
+                                <i class="fa fa-check"></i>
+                                {{ $data }}
                             </div>
+                        @endif
+                        <div class="m-2">
+                            <img class="avatar-img rounded-circle" src="images/{{ Session::get('image') }}"  width="200px">
                         </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card mb-3">
+                @endif
+
+
+                <!-- Basic information -->
+                    <form enctype="multipart/form-data" name="ajouter-etudiant-post-form" id="ajouter-etudiant-post-form" method="post"
+                          action="{{route('modifier-etudiant.put',[$etudiant->id])}}">
+                        @method('PUT')
+                        @csrf
+                        <div class="card mb-4">
                             <div class="card-body">
+                                <h3 class="h6 mb-4">Basic information</h3>
                                 <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Nom: </h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        {{ ucfirst($etudiant->nom) }}
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Courriel electronique:</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        {{ $etudiant->email }}
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Numero de téléphone</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        {{ $etudiant->phone }}
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Address</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        {{ $etudiant->adresse }}, {{ $ville->nom }}
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="flex flex-row">
-                                    <span class="col-sm-12">
-                                        <a href="/etudiant/{{ $etudiant->id }}/edit" class=
-                                        "btn btn-outline-primary">Modifier l'étudiant</a>
-                                    </span>
-                                    <form id="delete-frm" class="d-inline-block p-2 " method="DELETE" action="{{url('etudiant')}}">
-                                        @method('DELETE')
-                                        @csrf
-                                        <div class="form-group">
-                                            <label for="id" hidden>Id</label>
-                                            <input type="text" id="id" name="id" class="form-control" required=""
-                                                   value="{{ $etudiant->id }}" hidden>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="nom" class="form-label">Prénom</label>
+                                            <input id="nom" name="nom"  type="text" class="form-control" value="{{ $etudiant->nom}}">
                                         </div>
-                                        <button class=
-                                                "btn btn-danger">Supprimer l'étudiant
-                                        </button
-                                        >
-                                    </form>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="date_de_naissance">Date de Naissance</label>
+                                            <input type="date" id="date_de_naissance" name="date_de_naissance" class="form-control"
+                                                   required="" value="{{$etudiant->date_de_naissance }}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Courriel éléctronique</label>
+                                            <input id="email" name="email" type="email" class="form-control" value="{{  $etudiant->email}}">
+                                            @if ($errors->has('email'))
+                                                <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">Numéro de téléphone</label>
+                                            <input id="phone" name="phone" type="text" class="form-control" value="{{ $etudiant->phone}}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Address -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h6 mb-4">Inscrivez votre adresse</h3>
+                                <div class="mb-3">
+                                    <label for="adresse" class="form-label">Adresse</label>
+                                    <input id="adresse" name="adresse" type="text" class="form-control" value="{{ $etudiant->adresse}}">
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="villeId">Ville</label>
+                                            <select class="select2 form-control select2-hidden-accessible" aria-hidden="true" id="villeId" name="villeId" >
+                                                @forelse($villes as $ville)
+                                                    @if ($villec->nom == $ville->nom)
+                                                        <option selected value="{{ $ville->id}}">{{ucfirst( $ville->nom )}}</option>
+                                                    @else
+                                                        <option value="{{ $ville->id}}">{{ucfirst( $ville->nom )}}</option>
+                                                    @endif
 
 
-            </div
-            >
-        </div
-        >
-    </div
-    >@endsection
+                                                @empty <p class="text-warning">
+                                                    Aucune Ville enregistrée </p>
+                                                @endforelse
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary col-lg-4">Submit</button>
+                </div>
+
+                <!-- Right side -->
+                <div class="col-lg-4">
+                    <!-- Avatar -->
+                    <!-- https://www.webtrickshome.com/forum/how-to-display-uploaded-image-in-html-using-javascript -->
+                    <div class="card mb-4 avatar">
+                        @if($etudiant->image)
+                            <img class="avatar-img rounded-circle" id="output" src="{{ $etudiant->image}}"/>
+                        @else
+                            <img class="avatar-img rounded-circle" id="output"/>
+                        @endif
+
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection

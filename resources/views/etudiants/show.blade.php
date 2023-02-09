@@ -81,7 +81,7 @@
                                 <hr>
                                 <div class="flex flex-row">
                                     <span class="col-sm-12">
-                                        <a href="/etudiant/{{ $etudiant->id }}/edit" class=
+                                        <a href="{{route('modifier-etudiant.index', [$etudiant->id]) }}" class=
                                         "btn btn-outline-primary">Modifier l'étudiant</a>
                                     </span>
                                     <form id="delete-frm" class="d-inline-block p-2 " method="DELETE" action="{{url('etudiant')}}">
