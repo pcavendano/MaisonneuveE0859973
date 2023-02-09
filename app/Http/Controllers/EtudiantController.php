@@ -152,6 +152,6 @@ class EtudiantController extends Controller
     {
         //supprimer un étudiant
         $etudiant->delete();
-        return redirect('accueil');
+        return redirect('/');
     }
 }
