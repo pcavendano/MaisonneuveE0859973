@@ -16,5 +16,5 @@ yarn-error.log
 
 
 /public/css/app.css
-/public/js/app.js
+/public/js/*
 /puiblic/images/

@@ -20,7 +20,7 @@
         }
     </style>
 </head>
-<body>
+<body class="mt-0">
 @yield('content')
 <!-- Le javascript Bootstrap -->
 <script src="{{asset('js/app.js')}}"></script>

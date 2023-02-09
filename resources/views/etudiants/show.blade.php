@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container-lg mb-2 bg-primary ">
         <div class="row">
-            <div class="col-10 pt-2"><a href="/" class="btn btn-outline-primary btn-sm">Retourner</a>
+            <div class="col-12 pt-2"><a href="/" class="btn btn-light btn-outline-primary btn-sm">Retourner</a>
 
 
                 <!-- Fiche de l'étudiant avec bootstrap  -->
                 <!-- https://www.bootdey.com/snippets/view/profile-with-data-and-skills -->
 
                 <!-- Breadcrumb -->
-                <nav aria-label="breadcrumb" class="main-breadcrumb">
-                    <ol class="breadcrumb">
+                <nav aria-label="breadcrumb" class="main-breadcrumb bg-white mb-2 mt-2">
+                    <ol class="breadcrumb p-1">
 
                         <li class="breadcrumb-item"><a href="/">Accueil</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($etudiant->nom) }}</li>
