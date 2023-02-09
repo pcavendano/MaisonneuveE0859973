@@ -4,7 +4,7 @@
         <div class="container">
             <!-- Navigation -->
             <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
-                <a href="/" class="btn btn-outline-primary btn-sm">Retourner</a>
+                <a href="{{route('accueil')}}" class="btn btn-outline-primary btn-sm">Retourner</a>
             </div>
             <!-- Title -->
             <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">

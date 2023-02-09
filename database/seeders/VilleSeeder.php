@@ -13,6 +13,6 @@ class VilleSeeder extends Seeder
      */
     public function run()
     {
-        Ville::factory()->times(10)->create();
+        Ville::factory()->times(15)->create();
     }
 }
