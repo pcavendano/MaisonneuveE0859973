@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-lg mb-2 bg-primary ">
         <div class="row">
-            <div class="col-12 pt-2"><a href="/" class="btn btn-light btn-outline-primary btn-sm">Retourner</a>
+            <div class="col-12 pt-2"><a href="{{route('accueil')}}" class="btn btn-light btn-outline-primary btn-sm">Retourner</a>
 
 
                 <!-- Fiche de l'étudiant avec bootstrap  -->
@@ -84,7 +84,7 @@
                                         <a href="{{route('modifier-etudiant.index', [$etudiant->id]) }}" class=
                                         "btn btn-outline-primary">Modifier l'étudiant</a>
                                     </span>
-                                    <form id="delete-frm" class="d-inline-block p-2 " method="DELETE" action="{{url('etudiant')}}">
+                                    <form id="delete-frm" class="d-inline-block p-2 " method="post" action="{{route('effacer-etudiant.delete',[$etudiant->id])}}">
                                         @method('DELETE')
                                         @csrf
                                         <div class="form-group">
@@ -92,13 +92,9 @@
                                             <input type="text" id="id" name="id" class="form-control" required=""
                                                    value="{{ $etudiant->id }}" hidden>
                                         </div>
-                                        <button class=
-                                                "btn btn-danger">Supprimer l'étudiant
-                                        </button>
-
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                            Launch static backdrop modal
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            Supprimer l'étudiant
                                         </button>
 
                                         <!-- Modal -->
@@ -106,15 +102,15 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Supprimer l'étudiant</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        ...
+                                                        Vous êtes sûr de vouloir effacer votre profil?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Understood</button>
+                                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+                                                        <button type="submit"  class="btn btn-danger">Oui je sui sûr</button>
                                                     </div>
                                                 </div>
                                             </div>

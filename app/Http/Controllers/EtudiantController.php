@@ -139,9 +139,7 @@ class EtudiantController extends Controller
             'villeId' => $request->villeId
         ]);
         $etudiant->save();
-        return  redirect('etudiant/' . $etudiant->id);
-
-        return redirect('/')->with('success', 'Blog Post Form Data Has Been deleted');
+        return  redirect('etudiant/'. $etudiant->id)->with('success', 'Vos données ont été mises à jour.');
     }
 
     /**
@@ -153,14 +151,7 @@ class EtudiantController extends Controller
     public function destroy(Etudiant $etudiant)
     {
         //supprimer un étudiant
-        $etudiant = new Etudiant;
-        $etudiant->nom = $request->nom;
-        $etudiant->adresse = $request->adresse;
-        $etudiant->phone = $request->phone;
-        $etudiant->email = $request->email;
-        $etudiant->date_de_naissance = $request->date_de_naissance;
-        $etudiant->villeId = $request->villeId;
-        $etudiant->save();
-        return redirect('/')->with('success', 'Blog Post Form Data Has Been deleted');
+        $etudiant->delete();
+        return redirect('accueil');
     }
 }

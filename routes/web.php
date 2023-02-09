@@ -35,7 +35,7 @@ return view('listing', [
 
 
 Route::get('/', [EtudiantController::class
-    , 'index']);
+    , 'index'])->name('accueil');
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()
 {
@@ -51,56 +51,11 @@ Route::get('/etudiant/{etudiant}', [EtudiantController::class
 Route::post('/etudiants/creer/etudiant', [EtudiantController::class
     , 'create']);
 
-Route::delete('/etudiant/{id}', [EtudiantController::class
-    , 'delete']);
+Route::delete('/etudiant/{etudiant}',  [EtudiantController::class
+    , 'destroy'])->name('effacer-etudiant.delete');
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()
 {
     Route::get('/modifier-etudiant/{etudiant}', 'EtudiantController@edit')->name('modifier-etudiant.index');
     Route::put('/modifier-etudiant/{etudiant}', 'EtudiantController@update')->name('modifier-etudiant.put');
 });
-
-Route::put('/etudiants/{etudiant}/edit', [EtudiantController::class
-    , 'edit']);
-Route::patch('/etudiants/{etudiant}/edit', [EtudiantController::class
-    , 'update']);
-//Route::options($uri, $callback);
-//
-//Route::match(['get', 'post'], '/', function () {
-//    //
-//});
-//
-//Route::any('/', function () {
-//    //
-//});
-//
-//Route::redirect('/here', '/there');
-//
-////if you only want to return a view, route + data
-//Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
-//
-////routes with parameters
-//// Route parameters are injected into route callbacks / controllers based on their order
-//Route::get('/user/{id}', function ($id) {
-//    return 'User '.$id;
-//});
-//
-//
-////If your route has dependencies that you would like the Laravel service container
-//// to automatically inject into your route's callback, you should list your route parameters
-//// after your dependencies
-//Route::get('/user/{id}', function (Request $request, $id) {
-//    return 'User '.$id;
-//});
-//
-//
-////unkwon parameter name
-//Route::get('/user/{name?}', function ($name = 'John') {
-//    return $name;
-//});
-//
-////named routes
-//Route::get(
-//    '/user/profile',
-//    [UserProfileController::class, 'show']
-//)->name('profile');
